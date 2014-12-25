@@ -61,6 +61,7 @@ public class KlteRIL extends RIL implements CommandsInterface {
     private boolean mIsSendingSMS = false;
     protected boolean isGSM = false;
     public static final long SEND_SMS_TIMEOUT_IN_MS = 30000;
+    private boolean newril = needsOldRilFeature("newril");
 
     private Message mPendingGetSimStatus;
 
@@ -236,15 +237,13 @@ public class KlteRIL extends RIL implements CommandsInterface {
             dc.isMT = (0 != p.readInt());
             dc.als = p.readInt();
             voiceSettings = p.readInt();
-            if (isGSM){
-                p.readInt();
-            }
             dc.isVoice = (0 == voiceSettings) ? false : true;
             dc.isVoicePrivacy = (0 != p.readInt());
-            if (isGSM) {
-                p.readInt();
-                p.readInt();
-                p.readString();
+            if (newril) { // new ril
+                p.readInt(); // is video
+                p.readInt(); // samsung call detail
+                p.readInt(); // samsung call detail
+                p.readString(); // samsung call detail
             }
             dc.number = p.readString();
             int np = p.readInt();
@@ -637,7 +636,7 @@ public class KlteRIL extends RIL implements CommandsInterface {
     @Override
     public void
     dial(String address, int clirMode, UUSInfo uusInfo, Message result) {
-        if (samsungEmergency && PhoneNumberUtils.isEmergencyNumber(address)) {
+        if (newril && PhoneNumberUtils.isEmergencyNumber(address)) {
             dialEmergencyCall(address, clirMode, result);
             return;
         }
