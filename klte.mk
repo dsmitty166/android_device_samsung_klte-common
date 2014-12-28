@@ -37,6 +37,11 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
+LOCAL_KERNEL := device/samsung/klte-common/kernel/zImage-dtb
+
+PRODUCT_COPY_FILES := \
+    $(LOCAL_KERNEL):kernel
+
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
