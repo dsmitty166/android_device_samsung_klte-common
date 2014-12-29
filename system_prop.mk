@@ -7,18 +7,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluence \
     use.voice.path.for.pcm.voip=false \
     use.dedicated.device.for.voip=true \
-    mm.enable.smoothstreaming=true \
-    mm.enable.qcom_parser=3314291 \
-    av.streaming.offload.enable=true \
-    audio.offload.multiple.enabled=false \
-    audio.offload.gapless.enabled=true \
-    tunnel.audio.encode=true \
-    media.aac_51_output_enabled=true \
-    audio.offload.pcm.16bit.enable=true \
-    audio.offload.pcm.24bit.enable=true \
     lpa.decode=false \
     tunnel.decode=false
-
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
