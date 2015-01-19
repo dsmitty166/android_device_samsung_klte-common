@@ -78,27 +78,10 @@ BOARD_RECOVERY_SWIPE := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+# SELinux
+-include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_UNION += macloader.te
 BOARD_SEPOLICY_DIRS += device/samsung/klte-common/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    bluetooth.te \
-    device.te \
-    file_contexts \
-    file.te \
-    genfs_contexts \
-    mediaserver.te \
-    mm-qcamerad.te \
-    property_contexts \
-    property.te \
-    rild.te \
-    rmt_storage.te \
-    system_app.te \
-    system_server.te \
-    tee.te \
-    time_daemon.te \
-    ueventd.te \
-    wpa.te
 
 # Wifi
 BOARD_HAVE_SAMSUNG_WIFI := true
